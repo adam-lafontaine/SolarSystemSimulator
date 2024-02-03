@@ -1,12 +1,5 @@
 GPP := g++-11 -std=c++17
 
-#GPP += -O3
-#GPP += -DNDEBUG
-
-# apt-get install libsdl2-dev
-
-#SDL2 := -lSDL2
-
 NO_FLAGS := 
 ALL_LFLAGS := 
 
