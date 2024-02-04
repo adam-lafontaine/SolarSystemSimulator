@@ -1,0 +1,91 @@
+GPP := g++-11 -std=c++17
+
+#GPP += -O3
+#GPP += -DNDEBUG
+
+# apt-get install libsdl2-dev
+
+SDL2 := -lSDL2
+
+NO_FLAGS := 
+ALL_LFLAGS := $(SDL2)
+
+
+# directories
+
+root := .
+
+build := $(root)/build
+
+exe := solar_system
+
+program_exe := $(build)/$(exe)
+
+
+#*** util ***
+
+types_h := $(root)/types.hpp
+
+#**********
+
+
+#*** image ***
+
+image_h := $(root)/image.hpp
+image_h += $(types_h)
+
+#**********
+
+
+#*** main cpp ***
+
+main_c := $(root)/ss_main.cpp
+main_o := $(build)/main.o
+obj := $(main_o)
+
+main_dep := $(image_h)
+
+#************
+
+
+#*** image cpp ***
+
+image_c := $(root)/image.cpp
+image_o := $(build)/image.o
+obj += $(image_o)
+
+image_dep := 
+
+#***********
+
+
+
+$(main_o): $(main_c) $(main_dep)
+	@echo "\n  main"
+	$(GPP) -o $@ -c $< $(SDL2)
+
+
+$(image_o): $(image_c) $(image_dep)
+	@echo "\n  main"
+	$(GPP) -o $@ -c $< $(NO_FLAGS)
+
+
+$(program_exe): $(obj)
+	@echo "\n  program_exe"
+	$(GPP) -o $@ $+ $(ALL_LFLAGS)
+
+
+
+build: $(program_exe)
+
+
+run: build
+	$(program_exe)
+	@echo "\n"
+
+
+clean:
+	rm -rfv $(build)/*
+
+setup:
+	mkdir -p $(build)
