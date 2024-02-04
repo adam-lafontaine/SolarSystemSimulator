@@ -48,4 +48,4 @@ int main()
 ```
 
 * Refactor with main_init() and main_close()
-* Add main_loop() with couter and SDL_Delay()
+* Add main_loop() with counter and SDL_Delay()
